@@ -1,0 +1,38 @@
+{
+	"name": "hdd-sound",
+	"version": "0.0.1",
+	"description": "HDD Sound Simulator",
+	"main": "index.js",
+	"scripts": {
+		"start": "electron .",
+		"pack:osx": "electron-packager . $npm_package_productName --out=dist/osx --platform=darwin --arch=x64 --icon=assets/icon.icns --overwrite",
+		"pack:win32": "electron-packager . $npm_package_productName --out=dist/win --platform=win32 --arch=ia32 --icon=assets/icon.ico --overwrite",
+		"pack:win64": "electron-packager . $npm_package_productName --out=dist/win --platform=win32 --arch=x64 --icon=assets/icon.ico --overwrite",
+		"build": "npm run pack:osx && npm run pack:win32 && npm run pack:win64"
+	},
+	"build": {
+		"appId": "com.hdd-sound.app",
+		"productName": "HDD-Sound",
+		"trayIcon": "./assets/icon.png",
+		"mac": {
+			"category": "public.app-category.utilities",
+			"extendInfo": {
+				"LSUIElement": 1
+			},
+			"target": [
+				"zip"
+			]
+		},
+		"compression": "maximum"
+	},
+	"author": "Kris Henriksen",
+	"license": "MIT",
+	"devDependencies": {
+		"electron": "^22.0.0",
+		"electron-packager": "^17.1.1"
+	},
+	"dependencies": {
+		"speaker": "github:zackradisic/node-speaker",
+		"systeminformation": "^5.16.6"
+	}
+}
